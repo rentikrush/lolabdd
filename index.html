@@ -34,20 +34,13 @@ body{
     border-radius:16px;
     opacity:.18;
     border:3px solid rgba(255,255,255,.7);
-    box-shadow:0 0 20px rgba(255,255,255,.2);
     animation:float 20s linear infinite;
 }
 
 @keyframes float{
-    0%{
-        transform:translateY(0) rotate(-8deg);
-    }
-    50%{
-        transform:translateY(-15px) rotate(8deg);
-    }
-    100%{
-        transform:translateY(0) rotate(-8deg);
-    }
+    0%{transform:translateY(0) rotate(-8deg);}
+    50%{transform:translateY(-15px) rotate(8deg);}
+    100%{transform:translateY(0) rotate(-8deg);}
 }
 
 .container{
@@ -78,23 +71,22 @@ h1{
     min-height:110px;
 }
 
-button{
-    margin-top:25px;
-    border:none;
-    background:#ff4d8d;
-    color:#fff;
-    padding:14px 28px;
-    border-radius:14px;
+/* финальный блок */
+#final{
+    display:none;
+    margin-top:20px;
     font-size:18px;
-    cursor:pointer;
-    transition:.3s;
+    line-height:1.5;
 }
 
-button:hover{
-    transform:scale(1.05);
+a{
+    color:#ff4d8d;
+    text-decoration:none;
+    font-weight:bold;
 }
 </style>
 </head>
+
 <body>
 
 <audio id="music" loop>
@@ -107,17 +99,20 @@ button:hover{
     <div class="card">
         <h1>Para Lola 💖</h1>
         <div id="text"></div>
-        <button onclick="next()">Seguir</button>
+
+        <div id="final">
+            🎧 Escuchá esta canción con calma…<br><br>
+            y después abrí este link:<br><br>
+            <a href="https://t.me/" target="_blank">
+                👉 Abrir sorpresa en Telegram
+            </a><br><br>
+            Hay un pequeño regalo más para vos 💖
+        </div>
     </div>
 </div>
 
 <script>
-const images = [
-    "1.jpg",
-    "2.jpg",
-    "3.jpg",
-    "4.jpg"
-];
+const images = ["1.jpg","2.jpg","3.jpg","4.jpg"];
 
 const bg = document.getElementById("bg");
 
@@ -140,13 +135,12 @@ const texts = [
     "Nunca pierdas esa luz que tenés.",
     "Seguí soñando y sonriendo.",
     "Que todos tus deseos se hagan realidad 🎂",
-    "Y que este año te traiga mucha felicidad.",
-    "Gracias por ser vos, Lola 💕",
-    "Feliz cumpleaños, princesa 🎉"
+    "Gracias por existir, Lola 💕"
 ];
 
 let i = 0;
 const text = document.getElementById("text");
+const final = document.getElementById("final");
 
 function show(){
     text.innerHTML = texts[i];
@@ -157,14 +151,14 @@ function next(){
         i++;
         show();
     } else {
-        text.innerHTML =
-        "🎂 Feliz Cumpleaños, Lola 💖<br><br>Este pequeño regalo fue hecho para vos.";
+        text.style.display = "none";
+        final.style.display = "block";
     }
 }
 
 show();
 
-// запуск музыки после первого касания
+// музыка после первого клика
 document.body.addEventListener("click", function(){
     document.getElementById("music").play().catch(()=>{});
 }, { once:true });
