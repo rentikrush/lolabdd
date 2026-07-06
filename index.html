@@ -23,7 +23,6 @@ body{
     position:fixed;
     inset:0;
     z-index:-1;
-    overflow:hidden;
 }
 
 .bg img{
@@ -34,13 +33,13 @@ body{
     border-radius:16px;
     opacity:.18;
     border:3px solid rgba(255,255,255,.7);
-    animation:float 20s linear infinite;
+    animation:float 18s infinite ease-in-out;
 }
 
 @keyframes float{
-    0%{transform:translateY(0) rotate(-8deg);}
-    50%{transform:translateY(-15px) rotate(8deg);}
-    100%{transform:translateY(0) rotate(-8deg);}
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0);}
 }
 
 .container{
@@ -48,41 +47,62 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:20px;
     text-align:center;
+    padding:20px;
 }
 
 .card{
     max-width:500px;
-    background:rgba(0,0,0,.45);
-    backdrop-filter:blur(8px);
-    padding:35px;
+    background:rgba(0,0,0,.5);
+    backdrop-filter:blur(10px);
+    padding:30px;
     border-radius:25px;
 }
 
 h1{
-    margin-bottom:25px;
-    font-size:30px;
+    margin-bottom:20px;
 }
 
 #text{
-    font-size:23px;
-    line-height:1.5;
-    min-height:110px;
+    font-size:22px;
+    min-height:90px;
+    margin-bottom:20px;
 }
 
-/* финальный блок */
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:12px;
+    background:#ff4d8d;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    transition:.2s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
 #final{
     display:none;
-    margin-top:20px;
-    font-size:18px;
-    line-height:1.5;
+    margin-top:15px;
+}
+
+input{
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    margin-top:10px;
+    text-align:center;
 }
 
 a{
+    display:none;
+    margin-top:15px;
     color:#ff4d8d;
-    text-decoration:none;
     font-weight:bold;
+    text-decoration:none;
 }
 </style>
 </head>
@@ -98,15 +118,21 @@ a{
 <div class="container">
     <div class="card">
         <h1>Para Lola 💖</h1>
+
         <div id="text"></div>
 
+        <button id="nextBtn" onclick="next()">Seguir</button>
+
         <div id="final">
-            🎧 Escuchá esta canción con calma…<br><br>
-            y después abrí este link:<br><br>
-            <a href="https://t.me/" target="_blank">
+            🎧 Escuchá la canción…<br><br>
+
+            🔐 Código secreto:<br>
+            <input id="code" placeholder="Ingresá el código"><br>
+            <button onclick="checkCode()">Entrar</button><br>
+
+            <a id="link" href="https://t.me/" target="_blank">
                 👉 Abrir sorpresa en Telegram
-            </a><br><br>
-            Hay un pequeño regalo más para vos 💖
+            </a>
         </div>
     </div>
 </div>
@@ -121,29 +147,27 @@ for(let i=0;i<20;i++){
     img.src = images[Math.floor(Math.random()*images.length)];
     img.style.left = Math.random()*100 + "%";
     img.style.top = Math.random()*100 + "%";
-    img.style.animationDelay = Math.random()*10 + "s";
     bg.appendChild(img);
 }
 
 const texts = [
-    "Hola, Lola 💖",
-    "Hoy es un día muy especial.",
-    "Porque hoy cumple años una persona increíble.",
-    "Tenés una sonrisa hermosa ✨",
-    "Tu energía hace que todo sea más lindo 🌸",
-    "Sos una persona muy especial 💖",
-    "Nunca pierdas esa luz que tenés.",
-    "Seguí soñando y sonriendo.",
-    "Que todos tus deseos se hagan realidad 🎂",
-    "Gracias por existir, Lola 💕"
+"Hola, Lola 💖",
+"Hoy es un día muy especial.",
+"Tenés una sonrisa hermosa ✨",
+"Tu energía hace todo mejor 🌸",
+"Sos una persona increíble 💖",
+"Nunca pierdas tu luz.",
+"Feliz cumpleaños 🎂"
 ];
 
 let i = 0;
+
 const text = document.getElementById("text");
 const final = document.getElementById("final");
+const btn = document.getElementById("nextBtn");
 
 function show(){
-    text.innerHTML = texts[i];
+    text.innerText = texts[i];
 }
 
 function next(){
@@ -152,16 +176,28 @@ function next(){
         show();
     } else {
         text.style.display = "none";
+        btn.style.display = "none";
         final.style.display = "block";
     }
 }
 
 show();
 
-// музыка после первого клика
+// музыка после клика
 document.body.addEventListener("click", function(){
     document.getElementById("music").play().catch(()=>{});
 }, { once:true });
+
+// код
+function checkCode(){
+    const value = document.getElementById("code").value;
+
+    if(value === "Lola2026"){
+        document.getElementById("link").style.display = "block";
+    } else {
+        alert("Código incorrecto 💔");
+    }
+}
 </script>
 
 </body>
