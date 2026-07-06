@@ -23,6 +23,7 @@ body{
     position:fixed;
     inset:0;
     z-index:-1;
+    overflow:hidden;
 }
 
 .bg img{
@@ -53,7 +54,7 @@ body{
 
 .card{
     max-width:500px;
-    background:rgba(0,0,0,.5);
+    background:rgba(0,0,0,.55);
     backdrop-filter:blur(10px);
     padding:30px;
     border-radius:25px;
@@ -95,6 +96,7 @@ input{
     border:none;
     margin-top:10px;
     text-align:center;
+    font-size:15px;
 }
 
 a{
@@ -124,13 +126,13 @@ a{
         <button id="nextBtn" onclick="next()">Seguir</button>
 
         <div id="final">
-            🎧 Escuchá la canción…<br><br>
+            🎧 Escuchá la canción con calma…<br><br>
 
             🔐 Código secreto:<br>
             <input id="code" placeholder="Ingresá el código"><br>
             <button onclick="checkCode()">Entrar</button><br>
 
-            <a id="link" href="https://t.me/" target="_blank">
+            <a id="link" href="https://t.me/addstickers/Lolabirthday" target="_blank">
                 👉 Abrir sorpresa en Telegram
             </a>
         </div>
@@ -154,7 +156,7 @@ const texts = [
 "Hola, Lola 💖",
 "Hoy es un día muy especial.",
 "Tenés una sonrisa hermosa ✨",
-"Tu energía hace todo mejor 🌸",
+"Tu energía hace todo más lindo 🌸",
 "Sos una persona increíble 💖",
 "Nunca pierdas tu luz.",
 "Feliz cumpleaños 🎂"
@@ -183,16 +185,16 @@ function next(){
 
 show();
 
-// музыка после клика
+// музыка (после клика)
 document.body.addEventListener("click", function(){
     document.getElementById("music").play().catch(()=>{});
 }, { once:true });
 
 // код
 function checkCode(){
-    const value = document.getElementById("code").value;
+    const value = document.getElementById("code").value.trim();
 
-    if(value === "Lola2026"){
+    if(value === "RESPIRA"){
         document.getElementById("link").style.display = "block";
     } else {
         alert("Código incorrecto 💔");
