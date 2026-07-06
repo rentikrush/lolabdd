@@ -1,146 +1,173 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Для Лолы</title>
+<title>Feliz Cumpleaños, Lola 💖</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  overflow: hidden;
-  color: white;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
-/* фон с фотками */
-.bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  overflow: hidden;
-  z-index: -1;
+body{
+    background:#000;
+    color:#fff;
+    overflow:hidden;
 }
 
-.bg img {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 15px;
-  opacity: 0.25;
-  filter: blur(0.5px);
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    overflow:hidden;
 }
 
-/* центр контент */
-.container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
+.bg img{
+    position:absolute;
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:16px;
+    opacity:.18;
+    border:3px solid rgba(255,255,255,.7);
+    box-shadow:0 0 20px rgba(255,255,255,.2);
+    animation:float 20s linear infinite;
 }
 
-.card {
-  max-width: 500px;
+@keyframes float{
+    0%{
+        transform:translateY(0) rotate(-8deg);
+    }
+    50%{
+        transform:translateY(-15px) rotate(8deg);
+    }
+    100%{
+        transform:translateY(0) rotate(-8deg);
+    }
 }
 
-h1 {
-  font-size: 28px;
-  margin-bottom: 20px;
+.container{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    text-align:center;
 }
 
-p {
-  font-size: 20px;
-  min-height: 60px;
+.card{
+    max-width:500px;
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(8px);
+    padding:35px;
+    border-radius:25px;
 }
 
-/* кнопка */
-button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 12px;
-  background: #ff4d6d;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
+h1{
+    margin-bottom:25px;
+    font-size:30px;
 }
 
-button:hover {
-  background: #ff2f55;
+#text{
+    font-size:23px;
+    line-height:1.5;
+    min-height:110px;
+}
+
+button{
+    margin-top:25px;
+    border:none;
+    background:#ff4d8d;
+    color:#fff;
+    padding:14px 28px;
+    border-radius:14px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
 }
 </style>
 </head>
-
 <body>
 
-<!-- фон -->
+<audio id="music" loop>
+    <source src="Feliz Cumpleaños, Lola.mp3" type="audio/mpeg">
+</audio>
+
 <div class="bg" id="bg"></div>
 
-<!-- контент -->
 <div class="container">
-  <div class="card">
-    <h1>Для Лолы 💖</h1>
-    <p id="text">...</p>
-    <button onclick="next()">Продолжить</button>
-  </div>
+    <div class="card">
+        <h1>Para Lola 💖</h1>
+        <div id="text"></div>
+        <button onclick="next()">Seguir</button>
+    </div>
 </div>
 
 <script>
-// фоновые картинки (можешь заменить)
 const images = [
-"https://picsum.photos/200?1",
-"https://picsum.photos/200?2",
-"https://picsum.photos/200?3",
-"https://picsum.photos/200?4",
-"https://picsum.photos/200?5",
-"https://picsum.photos/200?6"
+    "1.jpg",
+    "2.jpg",
+    "3.jpg",
+    "4.jpg"
 ];
 
 const bg = document.getElementById("bg");
 
-images.forEach(() => {
-  const img = document.createElement("img");
-  img.src = images[Math.floor(Math.random() * images.length)];
-  img.style.top = Math.random() * 100 + "%";
-  img.style.left = Math.random() * 100 + "%";
-  img.style.transform = `rotate(${Math.random() * 30}deg)`;
-  bg.appendChild(img);
-});
+for(let i=0;i<20;i++){
+    const img = document.createElement("img");
+    img.src = images[Math.floor(Math.random()*images.length)];
+    img.style.left = Math.random()*100 + "%";
+    img.style.top = Math.random()*100 + "%";
+    img.style.animationDelay = Math.random()*10 + "s";
+    bg.appendChild(img);
+}
 
-// комплименты
 const texts = [
-"Ты делаешь этот мир теплее просто своим присутствием 💫",
-"У тебя очень редкая и красивая энергия ✨",
-"С тобой даже обычный день становится особенным 🌸",
-"Ты выглядишь так, будто тебя нарисовал художник 🎨",
-"В тебе есть что-то, что невозможно забыть 💖",
-"Ты — человек, который оставляет след в сердце 💫"
+    "Hola, Lola 💖",
+    "Hoy es un día muy especial.",
+    "Porque hoy cumple años una persona increíble.",
+    "Tenés una sonrisa hermosa ✨",
+    "Tu energía hace que todo sea más lindo 🌸",
+    "Sos una persona muy especial 💖",
+    "Nunca pierdas esa luz que tenés.",
+    "Seguí soñando y sonriendo.",
+    "Que todos tus deseos se hagan realidad 🎂",
+    "Y que este año te traiga mucha felicidad.",
+    "Gracias por ser vos, Lola 💕",
+    "Feliz cumpleaños, princesa 🎉"
 ];
 
 let i = 0;
-
 const text = document.getElementById("text");
 
-function show() {
-  text.innerText = texts[i];
+function show(){
+    text.innerHTML = texts[i];
 }
 
-function next() {
-  i++;
-  if (i >= texts.length) {
-    text.innerText = "Это всё, Лола 💖 С днём рождения!";
-    return;
-  }
-  show();
+function next(){
+    if(i < texts.length - 1){
+        i++;
+        show();
+    } else {
+        text.innerHTML =
+        "🎂 Feliz Cumpleaños, Lola 💖<br><br>Este pequeño regalo fue hecho para vos.";
+    }
 }
 
 show();
+
+// запуск музыки после первого касания
+document.body.addEventListener("click", function(){
+    document.getElementById("music").play().catch(()=>{});
+}, { once:true });
 </script>
 
 </body>
